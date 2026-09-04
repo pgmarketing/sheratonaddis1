@@ -1,6 +1,6 @@
 [build]
-  publish = "public"
-  functions = "netlify/functions"
+  publish = "."
+  functions = "functions"
 
 # Lets the frontend call clean /api/... paths instead of
 # /.netlify/functions/... directly

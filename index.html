@@ -327,7 +327,7 @@
       <div class="meta">
         <span>Sept 10</span>
         <span>Sheraton Addis</span>
-        <span>25,000 ETB</span>
+        <span>From 25,000 ETB</span>
       </div>
       <button class="event-cta" style="margin-top:18px; width:100%; text-align:center; border-color:var(--gold); color:var(--gold);" onclick="openTicketModal()">Get tickets</button>
     </div>
@@ -479,9 +479,14 @@
     <button class="modal-close" onclick="closeTicketModal()" aria-label="Close">✕</button>
     <h3>Select ticket</h3>
 
-    <div class="ticket-option selected" onclick="selectTicket(this)">
-      <div class="t-name">Entrance with food and drinks</div>
+    <div class="ticket-option selected" data-type="VIP" data-price="25,000 ETB" onclick="selectTicket(this)">
+      <div class="t-name">VIP — food and drinks included</div>
       <div class="t-price">25,000 <small>ETB</small></div>
+    </div>
+
+    <div class="ticket-option" data-type="VVIP" data-price="50,000 ETB" onclick="selectTicket(this)">
+      <div class="t-name">VVIP — unlimited food and drinks</div>
+      <div class="t-price">50,000 <small>ETB</small></div>
     </div>
 
     <div class="field-group">
@@ -501,7 +506,7 @@
       <div class="pay-instructions-title">How to pay</div>
       <ol>
         <li>Open your Telebirr app.</li>
-        <li>Send <strong>25,000 ETB</strong> to <strong>0956318430</strong>.</li>
+        <li>Send <strong id="payAmount">25,000 ETB</strong> to <strong>0956318430</strong>.</li>
         <li>Copy the transaction reference from the confirmation SMS.</li>
         <li>Paste it below and submit.</li>
       </ol>
@@ -539,6 +544,7 @@
   function selectTicket(el){
     document.querySelectorAll('.ticket-option').forEach(o => o.classList.remove('selected'));
     el.classList.add('selected');
+    document.getElementById('payAmount').textContent = el.dataset.price;
   }
 
   async function proceedToPayment(){
@@ -565,11 +571,13 @@
     }
     errEl.style.display = 'none';
 
+    const ticketType = document.querySelector('.ticket-option.selected').dataset.type;
+
     try{
       const res = await fetch(API + '/create-ticket', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ name, email, phone, paymentRef })
+        body: JSON.stringify({ name, email, phone, paymentRef, ticketType })
       });
       if(!res.ok) throw new Error('request failed');
       const ticket = await res.json();
@@ -594,7 +602,7 @@
           <div class="tc-event">${ticket.event}</div>
           <div class="tc-name">${ticket.name}</div>
           <div class="tc-row">Sept 10 · Sheraton Addis</div>
-          <div class="tc-row">${ticket.price} — food & drinks included</div>
+          <div class="tc-row">${ticket.ticketLabel || 'VIP'} · ${ticket.price} — ${ticket.perks || 'food & drinks included'}</div>
           <div class="tc-row">Ref: ${ticket.paymentRef || '—'}</div>
           ${badge}
           <div class="tc-id">${ticket.ticketId}</div>
@@ -603,7 +611,7 @@
       </div>
     `;
     new QRCode(document.getElementById('qr-' + ticket.ticketId), {
-      text: JSON.stringify({ ticketId: ticket.ticketId, name: ticket.name, event: ticket.event }),
+      text: JSON.stringify({ ticketId: ticket.ticketId, name: ticket.name, event: ticket.event, ticketType: ticket.ticketType }),
       width: 110,
       height: 110
     });
@@ -735,7 +743,7 @@
       listEl.innerHTML = rows.map(t => `
         <div class="admin-row">
           <div>
-            <div class="a-name">${t.name}</div>
+            <div class="a-name">${t.name} <span style="font-weight:500; color:var(--gold);">${t.ticketLabel || 'VIP'}</span></div>
             <div class="a-id">${t.ticketId} · ${t.email} · ${t.phone}</div>
             <div class="a-id">Ref: ${t.paymentRef || '—'}</div>
           </div>

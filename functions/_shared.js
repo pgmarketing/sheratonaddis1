@@ -1,5 +1,9 @@
 const EVENT_NAME = "Ethiopian New Year's Eve Concert 2019";
-const TICKET_PRICE = "25,000 ETB";
+
+const TICKET_TYPES = {
+  VIP: { label: 'VIP', price: '25,000 ETB', perks: 'Food and drinks included' },
+  VVIP: { label: 'VVIP', price: '50,000 ETB', perks: 'Unlimited food and drinks' },
+};
 
 function generateTicketId() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -21,4 +25,4 @@ function requireAdmin(event) {
   return key === process.env.ADMIN_KEY;
 }
 
-module.exports = { EVENT_NAME, TICKET_PRICE, generateTicketId, jsonResponse, requireAdmin };
+module.exports = { EVENT_NAME, TICKET_TYPES, generateTicketId, jsonResponse, requireAdmin };

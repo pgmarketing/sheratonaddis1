@@ -1,14 +1,18 @@
 const { db } = require('./_firebase');
-const { EVENT_NAME, TICKET_PRICE, generateTicketId, jsonResponse } = require('./_shared');
+const { EVENT_NAME, TICKET_TYPES, generateTicketId, jsonResponse } = require('./_shared');
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') return jsonResponse(405, { error: 'Method not allowed' });
 
-  const { name, email, phone, paymentRef } = JSON.parse(event.body || '{}');
+  const { name, email, phone, paymentRef, ticketType } = JSON.parse(event.body || '{}');
   if (!name || !email || !phone || !paymentRef) {
     return jsonResponse(400, { error: 'name, email, phone, and paymentRef are all required' });
   }
+  if (!TICKET_TYPES[ticketType]) {
+    return jsonResponse(400, { error: 'ticketType must be one of: ' + Object.keys(TICKET_TYPES).join(', ') });
+  }
 
+  const { label, price, perks } = TICKET_TYPES[ticketType];
   const ticketId = generateTicketId();
   const ticket = {
     ticketId,
@@ -16,7 +20,10 @@ exports.handler = async (event) => {
     name: name.trim(),
     email: email.trim().toLowerCase(),
     phone: phone.trim(),
-    price: TICKET_PRICE,
+    ticketType,
+    ticketLabel: label,
+    price,
+    perks,
     paymentRef: paymentRef.trim(),
     verified: false,
     checkedIn: false,
