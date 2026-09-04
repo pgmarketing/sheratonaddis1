@@ -1,0 +1,9 @@
+{
+  "name": "pmg-ticketing-netlify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PMG event ticketing — Netlify Functions + Firebase Firestore backend.",
+  "dependencies": {
+    "firebase-admin": "^12.5.0"
+  }
+}

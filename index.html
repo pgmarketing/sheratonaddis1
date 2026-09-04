@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pristine Marketing Group (PMG) — Addis Ababa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+<style>
+  :root{
+    --ink: #1C3B2E;
+    --ink-soft: #2C4E3D;
+    --gold: #E3A73C;
+    --clay: #B14A2E;
+    --cream: #F6EFE1;
+    --paper: #FBF7EE;
+    --charcoal: #221C15;
+    --sage: #7C9885;
+    --line: rgba(34,28,21,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'Public Sans', sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* Header */
+  header{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-size:20px; font-weight:600; color:var(--ink);
+  }
+  .logo svg{flex-shrink:0;}
+  nav ul{display:flex; gap:32px; list-style:none;}
+  nav a{font-size:15px; text-decoration:none; color:var(--charcoal); opacity:0.75; transition:opacity .15s;}
+  nav a:hover{opacity:1;}
+
+  /* Hero */
+  .hero{
+    padding:88px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:56px;
+    align-items:end;
+  }
+  .hero .kicker{
+    font-size:15px;
+    color:var(--clay);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 62px);
+    line-height:1.06;
+    max-width:11ch;
+  }
+  .hero p.lede{
+    margin-top:22px;
+    font-size:18px;
+    max-width:46ch;
+    color:var(--ink-soft);
+  }
+  .hero-panel{
+    background:var(--ink);
+    color:var(--cream);
+    padding:28px;
+    border-radius:2px;
+  }
+  .hero-panel .eyebrow{font-size:13px; color:var(--gold); margin-bottom:6px;}
+  .hero-panel h3{color:var(--cream); font-size:24px; margin-bottom:10px;}
+  .hero-panel p{font-size:14.5px; color:rgba(246,239,225,0.8); margin-bottom:18px;}
+  .hero-panel .meta{display:flex; gap:18px; font-size:13.5px; color:rgba(246,239,225,0.65); border-top:1px solid rgba(246,239,225,0.18); padding-top:14px;}
+
+  .weave{
+    position:absolute; right:-60px; top:-40px; opacity:0.5; z-index:-1;
+  }
+
+  /* Section shared */
+  section{padding:70px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:38px; border-bottom:1px solid var(--line); padding-bottom:18px;
+  }
+  .section-head h2{font-size:30px;}
+  .section-head span{font-size:14px; color:var(--sage);}
+
+  /* About */
+  .about .wrap{display:grid; grid-template-columns:0.8fr 1.2fr; gap:56px;}
+  .about-figure{
+    background:var(--ink);
+    aspect-ratio:4/5;
+    border-radius:2px;
+    display:flex; align-items:flex-end; padding:22px;
+  }
+  .about-figure span{color:var(--gold); font-family:'Fraunces',serif; font-size:15px;}
+  .about-copy p{margin-bottom:16px; max-width:56ch; color:var(--ink-soft);}
+  .stats{display:flex; gap:40px; margin-top:26px;}
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:30px; color:var(--clay);}
+  .stat span{font-size:13.5px; color:var(--sage);}
+
+  /* Lineup */
+  .artist-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .artist-card{background:var(--paper); padding:32px 24px;}
+  .artist-name{font-family:'Fraunces',serif; font-size:22px; color:var(--ink); margin-bottom:6px;}
+  .artist-role{font-size:13.5px; color:var(--sage);}
+
+  /* Events */
+  .event-row{
+    display:grid;
+    grid-template-columns:56px 1fr auto;
+    gap:24px;
+    align-items:center;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .event-row:first-of-type{border-top:1px solid var(--line);}
+  .event-num{font-family:'Fraunces',serif; font-size:15px; color:var(--sage);}
+  .event-date{
+    font-size:13.5px; color:var(--clay); margin-bottom:6px;
+  }
+  .event-title{font-size:22px; margin-bottom:4px;}
+  .event-venue{font-size:14.5px; color:var(--ink-soft);}
+  .event-cta{
+    justify-self:end;
+    font-size:14px;
+    padding:10px 20px;
+    border:1px solid var(--ink);
+    border-radius:2px;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background .15s, color .15s;
+  }
+  .event-cta:hover{background:var(--ink); color:var(--cream);}
+  .event-row.featured .event-title{color:var(--clay);}
+
+  /* Contact */
+  .contact{background:var(--ink); color:var(--cream);}
+  .contact h2{color:var(--cream);}
+  .contact .section-head{border-bottom-color:rgba(246,239,225,0.2);}
+  .contact .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .contact p{color:rgba(246,239,225,0.75); max-width:42ch; margin-bottom:22px;}
+  .contact-list{list-style:none;}
+  .contact-list li{padding:14px 0; border-bottom:1px solid rgba(246,239,225,0.15); display:flex; justify-content:space-between; font-size:15px;}
+  .contact-list li span:first-child{color:rgba(246,239,225,0.55);}
+
+  /* Lookup */
+  .lookup-box{display:flex; gap:12px; max-width:460px;}
+  .lookup-box input{
+    flex:1; padding:13px 16px; border:1px solid var(--line); border-radius:6px;
+    font-family:'Public Sans',sans-serif; font-size:15px; background:var(--paper); color:var(--charcoal);
+  }
+  .lookup-box input:focus{outline:2px solid var(--clay); outline-offset:1px;}
+  .lookup-box button{
+    padding:13px 22px; background:var(--ink); color:var(--cream); border:none;
+    border-radius:6px; font-size:14.5px; cursor:pointer; white-space:nowrap;
+  }
+  #lookupResult{margin-top:28px;}
+  .lookup-msg{color:var(--sage); font-size:14.5px;}
+
+  /* Digital ticket */
+  .ticket-card{
+    background:var(--ink); color:var(--cream);
+    border-radius:12px; padding:26px;
+    display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;
+    max-width:520px;
+  }
+  .ticket-card .tc-event{font-size:13px; color:var(--gold); margin-bottom:6px;}
+  .ticket-card .tc-name{font-family:'Fraunces',serif; font-size:24px; margin-bottom:10px;}
+  .ticket-card .tc-row{font-size:13.5px; color:rgba(246,239,225,0.75); margin-bottom:4px;}
+  .ticket-card .tc-id{font-size:12px; color:rgba(246,239,225,0.5); margin-top:12px; letter-spacing:0.02em;}
+  .ticket-card .tc-qr{background:#fff; padding:8px; border-radius:6px;}
+
+  /* Buyer form inside modal */
+  .field-group{margin-bottom:14px;}
+  .field-group label{display:block; font-size:13px; color:var(--sage); margin-bottom:6px;}
+  .field-group input{
+    width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:6px;
+    font-family:'Public Sans',sans-serif; font-size:15px; background:var(--paper); color:var(--charcoal);
+  }
+  .field-group input:focus{outline:2px solid var(--clay); outline-offset:1px;}
+
+  /* Admin */
+  .admin-row{
+    display:grid; grid-template-columns:1fr auto auto; gap:16px; align-items:center;
+    padding:14px 0; border-bottom:1px solid var(--line); font-size:14px;
+  }
+  .admin-row .a-name{font-weight:600;}
+  .admin-row .a-id{color:var(--sage); font-size:12.5px;}
+  .status-pill{
+    font-size:12px; padding:4px 10px; border-radius:20px; white-space:nowrap;
+  }
+  .status-pill.in{background:rgba(28,59,46,0.12); color:var(--ink);}
+  .status-pill.out{background:rgba(177,74,46,0.1); color:var(--clay);}
+
+  footer{
+    padding:26px 0; text-align:center; font-size:13px; color:var(--sage);
+  }
+
+  @media (max-width:760px){
+    .hero .wrap, .about .wrap, .contact .wrap{grid-template-columns:1fr;}
+    nav ul{gap:14px; font-size:13px;}
+    .event-row{grid-template-columns:1fr; gap:8px;}
+    .event-cta{justify-self:start;}
+    .event-num{display:none;}
+    .artist-grid{grid-template-columns:1fr;}
+    .lookup-box{flex-direction:column;}
+    .ticket-card{grid-template-columns:1fr; text-align:center; justify-items:center;}
+  }
+
+  :focus-visible{outline:2px solid var(--clay); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+
+  /* Ticket modal */
+  .modal-overlay{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(34,28,21,0.55);
+    z-index:100;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-sheet{
+    background:var(--paper);
+    width:100%; max-width:480px;
+    border-radius:12px 12px 0 0;
+    padding:28px 26px 34px;
+    animation:slideUp .25s ease-out;
+  }
+  @keyframes slideUp{from{transform:translateY(24px); opacity:0;} to{transform:translateY(0); opacity:1;}}
+  .modal-close{
+    background:none; border:none; font-size:22px; color:var(--charcoal);
+    cursor:pointer; line-height:1; padding:4px;
+  }
+  .modal-sheet h3{font-size:20px; text-align:center; margin:6px 0 26px;}
+  .ticket-option{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:14px;
+    cursor:pointer;
+    transition:border-color .15s;
+  }
+  .ticket-option.selected{border-color:var(--clay); border-width:2px;}
+  .ticket-option .t-name{font-size:16px; margin-bottom:8px;}
+  .ticket-option .t-price{font-family:'Fraunces',serif; font-size:24px; color:var(--ink);}
+  .ticket-option .t-price small{font-family:'Public Sans',sans-serif; font-size:13px; color:var(--sage); font-weight:500;}
+  .modal-buy{
+    width:100%; margin-top:8px;
+    background:var(--ink); color:var(--cream);
+    border:none; border-radius:8px;
+    padding:15px; font-size:15.5px;
+    cursor:pointer;
+  }
+  .payment-note{
+    font-size:12.5px; color:var(--sage); text-align:center; margin-top:14px;
+  }
+  .pay-instructions{
+    background:var(--cream); border:1px solid var(--line); border-radius:8px;
+    padding:16px 18px; margin-bottom:16px;
+  }
+  .pay-instructions-title{font-size:14px; font-weight:600; color:var(--ink); margin-bottom:8px;}
+  .pay-instructions ol{padding-left:18px; font-size:13.5px; color:var(--ink-soft);}
+  .pay-instructions li{margin-bottom:4px;}
+  .verify-badge{
+    display:inline-block; font-size:11.5px; padding:3px 9px; border-radius:20px; margin-top:8px;
+  }
+  .verify-badge.pending{background:rgba(227,167,60,0.2); color:#8a6416;}
+  .verify-badge.verified{background:rgba(28,59,46,0.15); color:var(--ink);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="12" stroke="#B14A2E" stroke-width="1.4"/>
+        <circle cx="13" cy="13" r="7" stroke="#E3A73C" stroke-width="1.4"/>
+        <circle cx="13" cy="13" r="2" fill="#1C3B2E"/>
+      </svg>
+      PMG
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#lineup">Lineup</a></li>
+        <li><a href="#events">Tickets</a></li>
+        <li><a href="#myticket">My Ticket</a></li>
+        <li><a href="#admin">Admin</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kicker">Addis Ababa · Live music & cultural events</div>
+      <h1>We bring Addis Ababa together, one stage at a time.</h1>
+      <p class="lede">Pristine Marketing Group (PMG) organizes concerts, festivals, and cultural gatherings across the city — from Enkutatash celebrations to year-round live music. Full production, from stage to sound to the last ticket sold.</p>
+    </div>
+    <div class="hero-panel">
+      <div class="eyebrow">Next up</div>
+      <h3>Ethiopian New Year's Eve Concert 2019</h3>
+      <p>A night of live performances at the Sheraton Addis Musical Fountain, featuring T.I. and special guest artists. Ticket includes unlimited dining and open bar all night.</p>
+      <div class="meta">
+        <span>Sept 10</span>
+        <span>Sheraton Addis</span>
+        <span>25,000 ETB</span>
+      </div>
+      <button class="event-cta" style="margin-top:18px; width:100%; text-align:center; border-color:var(--gold); color:var(--gold);" onclick="openTicketModal()">Get tickets</button>
+    </div>
+  </div>
+</section>
+
+<section id="lineup">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Lineup</h2>
+      <span>Sept 10 · Sheraton Addis</span>
+    </div>
+    <div class="artist-grid">
+      <div class="artist-card">
+        <div class="artist-name">T.I.</div>
+        <div class="artist-role">Headliner</div>
+      </div>
+      <div class="artist-card">
+        <div class="artist-name">Robel Mideksa</div>
+        <div class="artist-role">Performer</div>
+      </div>
+      <div class="artist-card">
+        <div class="artist-name">[Add artist name]</div>
+        <div class="artist-role">Special guest — confirm spelling before publishing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-figure">
+      <span>Est. 2019 — Addis Ababa</span>
+    </div>
+    <div class="about-copy">
+      <div class="section-head" style="border:none; padding:0; margin-bottom:22px;">
+        <h2>About us</h2>
+      </div>
+      <p>Pristine Marketing Group (PMG) is a full-service event organizer based in Addis Ababa. We plan, produce, and promote concerts and cultural events — handling everything from venue booking and artist logistics to ticketing and marketing, so the only thing our clients and audiences need to think about is showing up.</p>
+      <p>Our team has worked with musicians, cultural institutions, and venues across the city to put together events that feel unmistakably Ethiopian, built with local audiences and traditions at the center.</p>
+      <div class="stats">
+        <div class="stat"><b>40+</b><span>events produced</span></div>
+        <div class="stat"><b>6</b><span>years running</span></div>
+        <div class="stat"><b>12</b><span>venue partners</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Upcoming events</h2>
+      <span>Addis Ababa</span>
+    </div>
+
+    <div class="event-row featured">
+      <div class="event-num">01</div>
+      <div>
+        <div class="event-date">September 10, 2026</div>
+        <div class="event-title">Ethiopian New Year's Eve Concert — feat. T.I.</div>
+        <div class="event-venue">Sheraton Addis Hotel, Musical Fountain</div>
+      </div>
+      <button class="event-cta" onclick="openTicketModal()">Get tickets</button>
+    </div>
+  </div>
+</section>
+
+<section id="myticket">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>My ticket</h2>
+      <span>Look up a purchase</span>
+    </div>
+    <div class="lookup-box">
+      <input type="text" id="lookupInput" placeholder="Enter your ticket ID or email">
+      <button onclick="lookupTicket()">Find ticket</button>
+    </div>
+    <div id="lookupResult"></div>
+  </div>
+</section>
+
+<section id="admin">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Door check-in</h2>
+      <span>Staff only</span>
+    </div>
+
+    <div id="adminGate">
+      <div class="field-group" style="max-width:320px;">
+        <label for="adminPass">Staff passcode</label>
+        <input type="password" id="adminPass" placeholder="Enter passcode">
+      </div>
+      <button class="modal-buy" style="max-width:200px;" onclick="unlockAdmin()">Unlock</button>
+      <div style="font-size:12.5px; color:var(--sage); margin-top:10px;">Note: this is a basic client-side gate, not real security. Don't rely on it to protect sensitive data.</div>
+    </div>
+
+    <div id="adminPanel" style="display:none;">
+      <div style="display:flex; gap:32px; flex-wrap:wrap; margin-bottom:32px;">
+        <div>
+          <div id="scanBtn-wrap">
+            <button class="modal-buy" style="max-width:220px;" onclick="startScanner()">Scan QR code</button>
+          </div>
+          <div id="qr-reader" style="width:280px; margin-top:16px;"></div>
+        </div>
+        <div style="flex:1; min-width:260px;">
+          <div class="lookup-box">
+            <input type="text" id="checkinInput" placeholder="Or enter ticket ID manually">
+            <button onclick="checkInTicket(document.getElementById('checkinInput').value.trim())">Check in</button>
+          </div>
+          <div id="checkinResult" style="margin-top:18px;"></div>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin-bottom:20px;">
+        <h3 style="font-family:'Fraunces',serif; font-size:20px; color:var(--ink);">All tickets sold</h3>
+        <button onclick="loadAllTickets()" style="background:none; border:1px solid var(--ink); border-radius:6px; padding:8px 16px; cursor:pointer; font-size:13.5px;">Refresh</button>
+      </div>
+      <div id="allTicketsList"></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="section-head"><h2>Work with us</h2></div>
+      <p>Planning a concert, festival, or cultural event? We handle production, artist booking, ticketing, and promotion from start to finish.</p>
+      <p>Reach out and tell us what you're planning — we'll get back to you within a day.</p>
+    </div>
+    <div>
+      <ul class="contact-list">
+        <li><span>Email</span><span>hello@enkuevents.et</span></li>
+        <li><span>Phone</span><span>+251 91 234 5678</span></li>
+        <li><span>Office</span><span>Bole Road, Addis Ababa</span></li>
+        <li><span>Instagram</span><span>@enkuevents</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Pristine Marketing Group (PMG), Addis Ababa. All rights reserved.</div>
+</footer>
+
+<div class="modal-overlay" id="ticketModal">
+  <div class="modal-sheet" id="modalStep1">
+    <button class="modal-close" onclick="closeTicketModal()" aria-label="Close">✕</button>
+    <h3>Select ticket</h3>
+
+    <div class="ticket-option selected" onclick="selectTicket(this)">
+      <div class="t-name">Entrance with food and drinks</div>
+      <div class="t-price">25,000 <small>ETB</small></div>
+    </div>
+
+    <div class="field-group">
+      <label for="buyerName">Full name</label>
+      <input type="text" id="buyerName" placeholder="As it should appear on your ticket">
+    </div>
+    <div class="field-group">
+      <label for="buyerEmail">Email</label>
+      <input type="email" id="buyerEmail" placeholder="you@example.com">
+    </div>
+    <div class="field-group">
+      <label for="buyerPhone">Phone</label>
+      <input type="tel" id="buyerPhone" placeholder="+251 9...">
+    </div>
+
+    <div class="pay-instructions">
+      <div class="pay-instructions-title">How to pay</div>
+      <ol>
+        <li>Open your Telebirr app.</li>
+        <li>Send <strong>25,000 ETB</strong> to <strong>0956318430</strong>.</li>
+        <li>Copy the transaction reference from the confirmation SMS.</li>
+        <li>Paste it below and submit.</li>
+      </ol>
+    </div>
+    <div class="field-group">
+      <label for="paymentRef">Telebirr transaction reference</label>
+      <input type="text" id="paymentRef" placeholder="e.g. CI250910.1234.A56789">
+    </div>
+
+    <div id="formError" style="color:var(--clay); font-size:13.5px; margin-bottom:10px; display:none;"></div>
+
+    <button class="modal-buy" onclick="proceedToPayment()">I've paid — get my ticket</button>
+    <div class="payment-note">Your ticket is issued right away. Our team cross-checks the transaction reference before the event — tickets that can't be verified will be flagged at the door.</div>
+  </div>
+
+  <div class="modal-sheet" id="modalStep2" style="display:none;">
+    <button class="modal-close" onclick="closeTicketModal()" aria-label="Close">✕</button>
+    <h3>You're in 🎉</h3>
+    <div id="issuedTicket"></div>
+    <button class="modal-buy" style="margin-top:20px; background:transparent; color:var(--ink); border:1px solid var(--ink);" onclick="closeTicketModal()">Done</button>
+  </div>
+</div>
+
+<script>
+  const API = '/api'; // routed to Netlify Functions via netlify.toml redirects
+
+  function openTicketModal(){
+    document.getElementById('ticketModal').classList.add('open');
+    document.getElementById('modalStep1').style.display = 'block';
+    document.getElementById('modalStep2').style.display = 'none';
+  }
+  function closeTicketModal(){
+    document.getElementById('ticketModal').classList.remove('open');
+  }
+  function selectTicket(el){
+    document.querySelectorAll('.ticket-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  async function proceedToPayment(){
+    const nameEl = document.getElementById('buyerName');
+    const emailEl = document.getElementById('buyerEmail');
+    const phoneEl = document.getElementById('buyerPhone');
+    const refEl = document.getElementById('paymentRef');
+    const errEl = document.getElementById('formError');
+
+    const name = nameEl.value.trim();
+    const email = emailEl.value.trim();
+    const phone = phoneEl.value.trim();
+    const paymentRef = refEl.value.trim();
+
+    if(!name || !email || !phone){
+      errEl.textContent = 'Please enter your name, email, and phone.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if(!paymentRef){
+      errEl.textContent = 'Please enter your Telebirr transaction reference.';
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    try{
+      const res = await fetch(API + '/create-ticket', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ name, email, phone, paymentRef })
+      });
+      if(!res.ok) throw new Error('request failed');
+      const ticket = await res.json();
+
+      renderIssuedTicket(ticket, 'issuedTicket');
+      document.getElementById('modalStep1').style.display = 'none';
+      document.getElementById('modalStep2').style.display = 'block';
+    }catch(e){
+      errEl.textContent = 'Something went wrong saving your ticket. Please try again.';
+      errEl.style.display = 'block';
+    }
+  }
+
+  function renderIssuedTicket(ticket, containerId){
+    const container = document.getElementById(containerId);
+    const badge = ticket.verified
+      ? '<span class="verify-badge verified">✓ Payment verified</span>'
+      : '<span class="verify-badge pending">Pending verification</span>';
+    container.innerHTML = `
+      <div class="ticket-card">
+        <div>
+          <div class="tc-event">${ticket.event}</div>
+          <div class="tc-name">${ticket.name}</div>
+          <div class="tc-row">Sept 10 · Sheraton Addis</div>
+          <div class="tc-row">${ticket.price} — food & drinks included</div>
+          <div class="tc-row">Ref: ${ticket.paymentRef || '—'}</div>
+          ${badge}
+          <div class="tc-id">${ticket.ticketId}</div>
+        </div>
+        <div class="tc-qr" id="qr-${ticket.ticketId}"></div>
+      </div>
+    `;
+    new QRCode(document.getElementById('qr-' + ticket.ticketId), {
+      text: JSON.stringify({ ticketId: ticket.ticketId, name: ticket.name, event: ticket.event }),
+      width: 110,
+      height: 110
+    });
+  }
+
+  async function lookupTicket(){
+    const query = document.getElementById('lookupInput').value.trim();
+    const resultEl = document.getElementById('lookupResult');
+    resultEl.innerHTML = '';
+    if(!query){
+      resultEl.innerHTML = '<div class="lookup-msg">Enter a ticket ID or email to search.</div>';
+      return;
+    }
+    try{
+      const res = await fetch(API + '/lookup-ticket?q=' + encodeURIComponent(query));
+      if(!res.ok) throw new Error('not found');
+      const ticket = await res.json();
+      resultEl.innerHTML = '';
+      const wrapper = document.createElement('div');
+      wrapper.id = 'foundTicket';
+      resultEl.appendChild(wrapper);
+      renderIssuedTicket(ticket, 'foundTicket');
+    }catch(e){
+      resultEl.innerHTML = '<div class="lookup-msg">No ticket found for that ID or email.</div>';
+    }
+  }
+
+  document.getElementById('ticketModal').addEventListener('click', function(e){
+    if(e.target === this) closeTicketModal();
+  });
+
+  // ---- Admin / door check-in ----
+  let adminKey = null;
+  let html5QrCode;
+
+  async function unlockAdmin(){
+    const val = document.getElementById('adminPass').value;
+    try{
+      const res = await fetch(API + '/admin-login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ passcode: val })
+      });
+      if(!res.ok) throw new Error('bad passcode');
+      adminKey = val;
+      document.getElementById('adminGate').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      loadAllTickets();
+    }catch(e){
+      alert('Incorrect passcode.');
+    }
+  }
+
+  function startScanner(){
+    document.getElementById('scanBtn-wrap').style.display = 'none';
+    html5QrCode = new Html5Qrcode('qr-reader');
+    html5QrCode.start(
+      { facingMode: 'environment' },
+      { fps: 10, qrbox: 220 },
+      (decodedText) => {
+        let ticketId = decodedText;
+        try{ ticketId = JSON.parse(decodedText).ticketId; }catch(e){}
+        checkInTicket(ticketId);
+        html5QrCode.stop().then(() => {
+          document.getElementById('qr-reader').innerHTML = '';
+          document.getElementById('scanBtn-wrap').style.display = 'block';
+        });
+      },
+      () => {}
+    ).catch(() => {
+      alert('Could not access camera. Use manual ticket ID entry instead.');
+      document.getElementById('scanBtn-wrap').style.display = 'block';
+    });
+  }
+
+  async function checkInTicket(ticketId){
+    ticketId = (ticketId || '').trim().toUpperCase();
+    const resultEl = document.getElementById('checkinResult');
+    if(!ticketId){
+      resultEl.innerHTML = '<div class="lookup-msg">Enter or scan a ticket ID.</div>';
+      return;
+    }
+    try{
+      const res = await fetch(API + '/checkin-ticket', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'x-admin-key': adminKey},
+        body: JSON.stringify({ ticketId })
+      });
+      if(!res.ok) throw new Error('not found');
+      const ticket = await res.json();
+
+      if(ticket.alreadyCheckedIn){
+        resultEl.innerHTML = `<div style="color:var(--clay); font-weight:600;">⚠ Already checked in — ${ticket.name} (${ticket.ticketId})</div>`;
+        return;
+      }
+      const warn = ticket.verified ? '' : ' — ⚠ payment not yet verified, confirm ref: ' + (ticket.paymentRef || 'none');
+      resultEl.innerHTML = `<div style="color:var(--ink); font-weight:600;">✓ Checked in — ${ticket.name} (${ticket.ticketId})${warn}</div>`;
+      loadAllTickets();
+    }catch(e){
+      resultEl.innerHTML = '<div class="lookup-msg">No ticket found with that ID.</div>';
+    }
+  }
+
+  async function verifyPayment(ticketId){
+    try{
+      const res = await fetch(API + '/verify-ticket', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'x-admin-key': adminKey},
+        body: JSON.stringify({ ticketId })
+      });
+      if(!res.ok) throw new Error('failed');
+      loadAllTickets();
+    }catch(e){
+      alert('Could not update verification status.');
+    }
+  }
+
+  async function loadAllTickets(){
+    const listEl = document.getElementById('allTicketsList');
+    listEl.innerHTML = '<div class="lookup-msg">Loading…</div>';
+    try{
+      const res = await fetch(API + '/list-tickets', { headers: {'x-admin-key': adminKey} });
+      if(!res.ok) throw new Error('failed');
+      const rows = await res.json();
+      if(rows.length === 0){
+        listEl.innerHTML = '<div class="lookup-msg">No tickets sold yet.</div>';
+        return;
+      }
+      listEl.innerHTML = rows.map(t => `
+        <div class="admin-row">
+          <div>
+            <div class="a-name">${t.name}</div>
+            <div class="a-id">${t.ticketId} · ${t.email} · ${t.phone}</div>
+            <div class="a-id">Ref: ${t.paymentRef || '—'}</div>
+          </div>
+          <div>
+            <span class="status-pill ${t.verified ? 'in' : 'out'}">${t.verified ? 'Payment verified' : 'Unverified'}</span><br>
+            <span class="status-pill ${t.checkedIn ? 'in' : 'out'}" style="margin-top:4px; display:inline-block;">${t.checkedIn ? 'Checked in' : 'Not arrived'}</span>
+          </div>
+          <button onclick="verifyPayment('${t.ticketId}')" style="background:none; border:1px solid var(--ink); border-radius:6px; padding:6px 12px; cursor:pointer; font-size:12.5px; white-space:nowrap;" ${t.verified ? 'disabled' : ''}>
+            ${t.verified ? 'Verified' : 'Mark verified'}
+          </button>
+        </div>
+      `).join('');
+    }catch(e){
+      listEl.innerHTML = '<div class="lookup-msg">Couldn\'t load tickets.</div>';
+    }
+  }
+</script>
+</body>
+</html>
